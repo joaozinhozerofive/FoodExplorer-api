@@ -134,7 +134,7 @@ class PlatesController {
 
 
     async index(request, response){
-        let {name} = request.query;
+        let {name, ingredients} = request.query;
         const dish = await knex("plates")
 
         let plates;
@@ -151,7 +151,7 @@ class PlatesController {
                 "plates.user_id",
                 "plates.img"
                 )
-                .whereLike("tags.name", `%${name}%`)
+                .whereLike("tags.name", `%${ingredients}%`)
                 .innerJoin("plates", "plates.plate_id", "tags.plate_id")
                 .groupBy("plates.name")
                 
