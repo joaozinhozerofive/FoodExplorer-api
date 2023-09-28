@@ -5,7 +5,7 @@ const path = require("path");
 
 
 
-const TMP_FOLDER = path.resolve(__dirname, "..", "..", "tmp"); 
+const TMP_FOLDER = path.resolve(__dirname, "..", "..", "TMP"); 
 const UPLOADS_FOLDER = path.resolve(TMP_FOLDER, "uploads");
 
 
