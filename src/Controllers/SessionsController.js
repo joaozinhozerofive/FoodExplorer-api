@@ -33,7 +33,7 @@ class SessionsController{
         })
 
 
-        response.json({user, token, isAdmin : user.admin});
+        response.json({user, token});
 
 
     }
