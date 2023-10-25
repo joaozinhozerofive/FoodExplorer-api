@@ -140,9 +140,7 @@ class PlatesController {
         let plates;
 
         
-        
-        if(ingredients){
-            plates = await knex("tags").select(
+        plates = await knex("tags").select(
                 "plates.plate_id",
                 "plates.name",
                 "plates.category", 
@@ -151,24 +149,12 @@ class PlatesController {
                 "plates.user_id",
                 "plates.img"
                 )
-                .whereLike("tags.name", `%${ingredients}%`)
+                .whereLike("tags.name", `%${name}%`)
+                .orWhereLike("plates.name",  `%${name}%`)
                 .innerJoin("plates", "plates.plate_id", "tags.plate_id")
                 .groupBy("plates.name")
-                
-            }else{
-                plates = await knex("plates").select([
-                    "plate_id", 
-                    "name",
-                    "category", 
-                    "price",
-                    "description", 
-                    "user_id", 
-                    "img"
-                ])
-                .whereLike("name", `%${name}%`)
-                .orderBy("name")
-            }
-            
+                .orderBy('plates.name')
+        
             
             const tags = await knex("tags")
             .select(
