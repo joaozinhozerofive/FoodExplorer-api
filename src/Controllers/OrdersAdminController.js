@@ -37,6 +37,27 @@ class OrdersAdminController{
         response.json({
             ordersWithItems
         })
+    }
 
+
+    async update(request, response){
+        const {order_id} = request.params
+        const {status} = request.body
+
+        
+            const orderUpdate =   await knex("orders").where({order_id})
+
+
+            try{
+                await knex("orders").update({status}).where({order_id})
+            } catch{
+                throw new AppError("Não foi possível atualizar prato")
+            }
+        
+
+        return response.json({status, order_id, orderUpdate})
     }
 }
+
+
+module.exports = OrdersAdminController;

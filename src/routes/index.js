@@ -18,7 +18,7 @@ routes.use("/plates", platesRoutes);
 routes.use("/tags", tagsRoutes);
 routes.use("/favorites", favoritesRoutes)
 routes.use("/orders", ordersRoutes)
-routes.use("/orders/admin", ordersRoutes)
+routes.use("/orders/admin", ordersAdminRoutes)
 
 
 module.exports = routes;
