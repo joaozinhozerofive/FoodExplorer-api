@@ -5,7 +5,7 @@ const AppError = require("../utils/AppError");
 class OrdersController{
     async create(request, response){
         const user_id  = request.user.id
-        const { status, totalPrice, plates, quantity } = request.body;
+        const { status, totalPrice, plates} = request.body;
     
         const [order_id] = await knex("orders").insert({
             user_id, 
@@ -16,14 +16,14 @@ class OrdersController{
         const cartsInsert = [];
 
         for (let i = 0; i < plates.length; i++) {
-            const plate_id = plates[i];
-            const quant = quantity[i];
+            const plate_id = plates[i].plate_id;
+            const quantity = plates[i].quantity;
     
             const cartItem = {
-                plate_id,
-                user_id,
-                order_id,
-                quantity: quant
+                order_id : order_id, 
+                user_id: user_id, 
+                plate_id : plate_id, 
+                quantity : quantity
             };
     
             cartsInsert.push(cartItem);
