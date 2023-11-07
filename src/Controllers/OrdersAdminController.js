@@ -8,7 +8,7 @@ class OrdersAdminController{
         // Este método index tem o objetivo de mostrar as ordems/pedidos juntamente com seus itens.
 
         //Aqui estou acessando todas as linhas da tabela orders
-        const orders = await knex("orders");
+        const orders = await knex("orders").orderBy("order_id", "desc");;
 
         //Aqui estou acessando todas as linhas da tabela carts, porém selecionando também name na tabela plates
         const ordersItems = await knex("carts")
@@ -34,9 +34,9 @@ class OrdersAdminController{
       //obs: map é um loop que percorre cada um dos objetos/elementos de um array até que os mesmos acabem
 
 
-        response.json({
+        response.json(
             ordersWithItems
-        })
+        )
     }
 
 
