@@ -6,11 +6,15 @@ class OrdersController{
     async create(request, response){
         const user_id  = request.user.id
         const { status, totalPrice, plates} = request.body;
+
+
+        const created_at = new Date();
     
         const [order_id] = await knex("orders").insert({
             user_id, 
             totalPrice, 
             status, 
+            created_at : created_at
         });
     
         const cartsInsert = [];
