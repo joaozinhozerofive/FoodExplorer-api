@@ -10,7 +10,8 @@ class OrdersController{
         const [order_id] = await knex("orders").insert({
             user_id, 
             totalPrice, 
-            status
+            status, 
+            create_at : new Date()
         });
     
         const cartsInsert = [];
