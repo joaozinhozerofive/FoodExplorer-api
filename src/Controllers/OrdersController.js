@@ -47,7 +47,7 @@ class OrdersController{
         //Aqui estou acessando todas as linhas da tabela orders que contenham o user_id enviado na requisição. 
         const orders = await knex("orders").where({user_id}).orderBy("order_id", "desc");
 
-        //Aqui estou acessando todas as linhas da tabela carts, porém selecionando também name na tabela plates
+        //Aqui estou acessando todas as linhas da tabela carts, porém selecionando também name e price na tabela plates
         const ordersItems = await knex("carts")
       .select([
         "plates.name",
@@ -55,7 +55,7 @@ class OrdersController{
         "carts.quantity",
         "plates.price"
       ])
-      .innerJoin("plates", "carts.plate_id", "plates.plate_id") //Aqui estou juntando a tabela plates e carts através do plate_id, desta forma seleciono plates.name e plates.price em que o plate_id esteja contido na tabela carts.
+      .innerJoin("plates", "carts.plate_id", "plates.plate_id") //Aqui estou me conectando com a tabela plates e fazendo uma espécie de "where" --- .where("cars.plate_id", "plates.plate_id").
 
       // aqui estou criando uma variavel que percorre cada objeto de orders
       const ordersWithItems = orders.map(order => { //o map está percorrendo cada objeto de orders e os nomeando como order 
