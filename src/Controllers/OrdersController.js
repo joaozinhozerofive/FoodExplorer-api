@@ -69,6 +69,7 @@ class OrdersController{
         return {
             order, 
             items: orderItem, 
+            newData
         }
       })
 
