@@ -11,7 +11,6 @@ class OrdersController{
             user_id, 
             totalPrice, 
             status, 
-            create_at : new Date()
         });
     
         const cartsInsert = [];
